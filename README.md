@@ -38,7 +38,7 @@ Para garantir a qualidade, utilizamos a técnica de testes unitários. A suíte 
 
 ---
 
-![FOTO DO RETORNO DO CONSOLE.](testCoveragePrint001.jpg)
+![FOTO DO RETORNO DO CONSOLE.](imgs/testCoveragePrint001.jpg)
 
 ## 🚀 4. Como Executar o Projeto
 
