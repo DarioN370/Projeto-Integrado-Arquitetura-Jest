@@ -16,9 +16,17 @@ function calcularOrcamento(valorPecas, valorMaoDeObra, desconto) {
     const subtotal = valorPecas + valorMaoDeObra;
     const valorComDesconto = subtotal - (subtotal * desconto);
     const imposto = valorComDesconto * percentualImposto;
+    const totalFinal = valorComDesconto + imposto;
 
-    // Retorna apenas o valor total final
-    return valorComDesconto + imposto;
+    // Retorna apenas o valor total final, AQUI É ANTES DE USAR O TO EQUAL
+    // return valorComDesconto + imposto;
+
+    return{
+        pecas: valorPecas,
+        maoDeObra: valorMaoDeObra,
+        total: totalFinal,
+        status: 'Orcamento Valido'
+    }
 }
 
 module.exports = calcularOrcamento;
