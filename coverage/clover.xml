@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1778355071405" clover="3.2.0">
-  <project timestamp="1778355071405" name="All files">
-    <metrics statements="11" coveredstatements="11" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1" elements="19" coveredelements="19" complexity="0" loc="11" ncloc="11" packages="1" files="1" classes="1"/>
-    <file name="orcamento.js" path="C:\codigos\projetoIntegrado\orcamento.js">
-      <metrics statements="11" coveredstatements="11" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
+<coverage generated="1780150024328" clover="3.2.0">
+  <project timestamp="1780150024328" name="All files">
+    <metrics statements="12" coveredstatements="12" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1" elements="20" coveredelements="20" complexity="0" loc="12" ncloc="12" packages="1" files="1" classes="1"/>
+    <file name="orcamento.js" path="C:\codigos\Projeto-Integrado-Arquitetura-Jest\orcamento.js">
+      <metrics statements="12" coveredstatements="12" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
       <line num="2" count="4" type="stmt"/>
       <line num="3" count="4" type="stmt"/>
       <line num="6" count="4" type="cond" truecount="2" falsecount="0"/>
@@ -13,8 +13,9 @@
       <line num="16" count="2" type="stmt"/>
       <line num="17" count="2" type="stmt"/>
       <line num="18" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
       <line num="21" count="2" type="stmt"/>
-      <line num="24" count="1" type="stmt"/>
+      <line num="29" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
