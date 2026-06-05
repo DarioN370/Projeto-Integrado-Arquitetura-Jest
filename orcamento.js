@@ -1,16 +1,18 @@
-function calcularOrcamento(valorPecas, valorMaoDeObra, desconto) {
+const enviarWhatsApp = require('./enviarWhatsApp');
+
+function calcularOrcamento(valorPecas, valorMaoDeObra, desconto, telefoneCliente = null) {
     const percentualImposto = 0.05; // 5% de imposto (ISS)
     const descontoMaximo = 0.15;   // Desconto máximo de 15%
 
     // Regra de Negócio: O desconto não pode ser maior que 15% (0.15)
     if (desconto > descontoMaximo) {
         return "Erro: Desconto acima do limite permitido";
-    } // Se o valor do desconto for maior que o descontoMaximo, vai dar erro
+    } 
 
     // Regra de Negócio: Valores não podem ser negativos
     if (valorPecas < 0 || valorMaoDeObra < 0 || desconto < 0) {
         return "Erro: Valores inválidos";
-    } // Se qualquer valor for menor que 0 (negativo), vai dar erro
+    } 
 
     // calculos para puxar na function
     const subtotal = valorPecas + valorMaoDeObra;
@@ -18,11 +20,19 @@ function calcularOrcamento(valorPecas, valorMaoDeObra, desconto) {
     const imposto = valorComDesconto * percentualImposto;
     const totalFinal = valorComDesconto + imposto;
 
-    return{
+    // NOVIDADE: Disparo de WhatsApp caso o balconista digite o telefone
+    let statusWhatsApp = "Não solicitado";
+    if (telefoneCliente) {
+        const envioSucesso = enviarWhatsApp(telefoneCliente, totalFinal);
+        statusWhatsApp = envioSucesso ? "Mensagem Enviada" : "Falha no Envio";
+    }
+
+    return {
         pecas: valorPecas,
         maoDeObra: valorMaoDeObra,
         total: totalFinal,
-        status: 'Orcamento Valido'
+        status: 'Orcamento Valido',
+        notificacao: statusWhatsApp
     }
 }
 
