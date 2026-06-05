@@ -25,14 +25,23 @@ describe('Suíte de testes: Validação de Orçamentos de Autopeças', () => {
         expect(orcamentoRetornado.status).toBe('Orcamento Valido');
     });
 
-    it('Deve barrar e retornar erro para descontos acima de 15%', () => {
-        const orcamentoRetornado = calcularOrcamento(100, 100, 0.20);
-        expect(orcamentoRetornado).toBe("Erro: Desconto acima do limite permitido");
-    });
-
-    it('Deve barrar valores negativos', () => {
-        const orcamentoRetornado = calcularOrcamento(-50, 100, 0);
-        expect(orcamentoRetornado).toBe("Erro: Valores inválidos");
+    // --- TESTES USANDO MATRIZ (TEST.EACH) PARA AS REGRAS DE NEGÓCIO ---
+    
+    describe('Tabela de decisão para bloqueio de erros', () => {
+        // cria uma matriz onde cada linha é um caso de erro que deve ser barrado
+        test.each([
+            [100, 100, 0.20, "Erro: Desconto acima do limite permitido"], // desconto maior que 15%
+            [-50, 100, 0, "Erro: Valores inválidos"], // valor de peças negativo
+            [100, -50, 0, "Erro: Valores inválidos"], // valor de mao de obra negativo
+            [100, 100, -0.10, "Erro: Valores inválidos"], // desconto negativo
+        ])(
+            'Peças: %i | Mão de Obra: %i | Desconto: %f => Esperado: %s',
+            (valorPecas, valorMaoDeObra, desconto, resultadoEsperado) => {
+                // Aqui dentro escrevemos o teste apenas uma vez para todos os erros
+                const orcamentoRetornado = calcularOrcamento(valorPecas, valorMaoDeObra, desconto);
+                expect(orcamentoRetornado).toBe(resultadoEsperado);
+            }
+        );
     });
 
     // --- TESTES USANDO MOCK ---
