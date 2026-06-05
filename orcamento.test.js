@@ -1,12 +1,10 @@
 const calcularOrcamento = require('./orcamento');
 const enviarWhatsApp = require('./enviarWhatsApp');
 
-// A MÁGICA DO MOCK: Substitui o envio real de WhatsApp por um dublê vazio
+// Substitui o envio real de WhatsApp por um dublê vazio
 jest.mock('./enviarWhatsApp');
 
 describe('Suíte de testes: Validação de Orçamentos de Autopeças', () => {
-
-    // --- SEUS TESTES ORIGINAIS (MANTIDOS INTACTOS) ---
 
     it('Deve calcular o orçamento básico sem desconto corretamente', () => {
         const orcamentoRetornado = calcularOrcamento(100,100,0);
@@ -15,7 +13,7 @@ describe('Suíte de testes: Validação de Orçamentos de Autopeças', () => {
             maoDeObra: 100,
             total: 210,
             status: 'Orcamento Valido',
-            notificacao: 'Não solicitado' // Atualizado com o novo campo
+            notificacao: 'Não solicitado' // novo campo
         };
         expect(orcamentoRetornado).toEqual(orcamentoEsperado);
     });
@@ -37,23 +35,23 @@ describe('Suíte de testes: Validação de Orçamentos de Autopeças', () => {
         expect(orcamentoRetornado).toBe("Erro: Valores inválidos");
     });
 
-    // --- NOVOS TESTES USANDO O CONCEITO DE MOCK ---
+    // --- TESTES USANDO MOCK ---
 
     describe('Testes de Integração com WhatsApp (Mocks)', () => {
         it('Deve marcar notificação como "Mensagem Enviada" quando o disparo for bem-sucedido', () => {
-            // Força o dublê a retornar TRUE (Sucesso)
+            // Força o dublê a retornar TRUE
             enviarWhatsApp.mockReturnValue(true);
 
             // Simulamos o balconista digitando o telefone do cliente
             const resultado = calcularOrcamento(100, 100, 0, "19999999999");
 
             expect(resultado.notificacao).toBe("Mensagem Enviada");
-            // Bônus: O Jest verifica se o mock foi chamado com os dados certos!
+            // O Jest verifica se o mock foi chamado com os dados certos 
             expect(enviarWhatsApp).toHaveBeenCalledWith("19999999999", 210);
         });
 
         it('Deve marcar notificação como "Falha no Envio" quando a API do WhatsApp cair', () => {
-            // Força o dublê a retornar FALSE (Queda de servidor)
+            // Força o dublê a retornar FALSE, simula a queda de servidor
             enviarWhatsApp.mockReturnValue(false);
 
             const resultado = calcularOrcamento(100, 100, 0, "19999999999");
