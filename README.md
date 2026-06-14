@@ -4,7 +4,7 @@
 > **Curso:** Análise e Desenvolvimento de Sistemas (ADS)
 
 Este projeto prático foi desenvolvido para as disciplinas de **Engenharia de Software** e **Teste e Qualidade de Software**. O objetivo principal é aplicar o ciclo de vida de desenvolvimento de software em uma lógica de negócio real, garantindo sua confiabilidade por meio de testes automatizados unitários usando o framework **Jest**.
-Alem disso, o projeto utilizou em seu desenvolvimento o modelo espiral, uma vez que as features do projeto vão sendo adicionadas e atualizadas, e testes realizados a cada rodada
+Alem disso, o projeto utilizou em seu desenvolvimento o modelo incremental, uma vez que as features do projeto vão sendo adicionadas e atualizadas, e testes realizados a cada rodada
 
 ---
 
